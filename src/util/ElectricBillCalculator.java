@@ -1,5 +1,9 @@
 package util;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class ElectricBillCalculator {
 
     private static long startTime;  // To track when the AC is turned on
@@ -33,5 +37,20 @@ public class ElectricBillCalculator {
 
         System.out.printf("Total Electric Bill: $%.2f\n", totalBill);
         System.out.printf("Air conditioner has been running for %d hours, %d minutes, %d seconds.\n", hours, minutes, seconds);
+        logBillToCSV(totalBill, hours, minutes, seconds);
+    }
+
+    // Write the electric bill and running time
+    private static void logBillToCSV(double totalBill, long hours, long minutes, long seconds) {
+        try (FileWriter fw = new FileWriter("air_conditioner_log.csv", true);
+             PrintWriter writer = new PrintWriter(fw)) {
+            // Write
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+            writer.printf("Electric Bill: $%.2f, Time: %d hours, %d minutes, %d seconds, Timestamp: %s\n",
+                    totalBill, hours, minutes, seconds, timestamp);
+        } catch (IOException e) {
+            System.out.println("Error writing to log file: " + e.getMessage());
+        }
     }
 }
+
