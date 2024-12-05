@@ -1,0 +1,24 @@
+**src/**
+├── **model/**
+│   ├── AirConditioner.java
+│   ├── Temperature.java
+│   ├── Mode.java
+│   ├── FanSpeed.java
+│   ├── Timer.java
+│   └── Log.java
+│
+├── **factory/**
+│   ├── AirConditionerFactory.java
+│   └── ModeFactory.java
+│
+├── **singleton/**
+│   └── AirConditionerManager.java
+│
+├── **facade/**
+│   └── AirConditionerFacade.java
+│
+├── **util/**
+│   ├── Logger.java
+│   └── ElectricBillCalculator.java
+│
+└── **Main.java**

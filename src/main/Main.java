@@ -23,12 +23,12 @@ public class Main {
             }
         }
 
-        // The Controller starts here
+        // The Controller start from here
         Controller controller = new Controller();
         controller.start();
     }
 
-    // Regex to check email format
+    // regex mail check
     private static boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
