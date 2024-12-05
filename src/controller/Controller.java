@@ -2,6 +2,7 @@ package controller;
 
 import facade.AirConditionerFacade;
 import model.FanSpeed;
+import util.ElectricBillCalculator;
 
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ public class Controller {
 
         if (input.equalsIgnoreCase("ON")) {
             facade.turnOn();
+            ElectricBillCalculator.startAC();  // Start the AC timer when it's turned on
         } else {
             System.out.println("Air conditioner is OFF. Exiting program...");
             System.exit(0);
@@ -36,9 +38,10 @@ public class Controller {
             System.out.println("5. Increase timer (+30 minutes)");
             System.out.println("6. Decrease timer (-30 minutes)");
             System.out.println("7. Display status");
-            System.out.println("8. Exit");
+            System.out.println("8. Calculate Electric Bill");
+            System.out.println("9. Exit");
 
-            System.out.print("\nChoose an option (1-8): ");
+            System.out.print("\nChoose an option (1-9): ");
             String choice = scanner.nextLine().trim();
 
             switch (choice) {
@@ -95,6 +98,10 @@ public class Controller {
                     facade.displayStatus();
                     break;
                 case "8":
+                    // Call the ElectricBillCalculator to calculate the electric bill
+                    ElectricBillCalculator.calculateElectricBill();
+                    break;
+                case "9":
                     System.out.println("Exiting program...");
                     System.exit(0);
                     break;

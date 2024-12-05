@@ -4,8 +4,6 @@ import singleton.AirConditionerManager;
 import model.AirConditioner;
 import model.FanSpeed;
 import model.Mode;
-import model.Temperature;
-import model.Timer;
 import util.Logger;
 import model.Log;
 

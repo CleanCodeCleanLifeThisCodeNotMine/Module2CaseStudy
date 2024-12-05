@@ -14,6 +14,8 @@ public class Timer {
     public void decrease() {
         if (this.hours > 30) {
             this.hours -= 30;
+        } else {
+            this.hours = 0; //Hopefully fix the decrease bug
         }
     }
 
