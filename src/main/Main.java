@@ -22,12 +22,12 @@ public class Main {
             System.exit(0);
         }
 
-        // Keep the program running in a loop, waiting for further user commands
+        // loop
         while (true) {
             System.out.println("\nEnter a command:");
             System.out.println("1. Turn OFF the air conditioner");
             System.out.println("2. Set temperature (e.g., 22)");
-            System.out.println("3. Set mode (e.g., cool, heat)");
+            System.out.println("3. Set mode (cool/heat)");
             System.out.println("4. Set fan speed (e.g., low, medium, high)");
             System.out.println("5. Increase timer (+30 minutes)");
             System.out.println("6. Decrease timer (-30 minutes)");
@@ -47,9 +47,18 @@ public class Main {
                     facade.setTemperature(temperature);
                     break;
                 case "3":
-                    System.out.print("Enter mode (cool/heat): ");
-                    String mode = scanner.nextLine().trim();
-                    facade.setMode(mode);
+                    System.out.println("Select mode:");
+                    System.out.println("1. Cool");
+                    System.out.println("2. Heat");
+                    System.out.print("Choose (1 or 2): ");
+                    String modeChoice = scanner.nextLine().trim();
+                    if (modeChoice.equals("1")) {
+                        facade.setMode("cool");
+                    } else if (modeChoice.equals("2")) {
+                        facade.setMode("heat");
+                    } else {
+                        System.out.println("Invalid mode choice. Please select 1 for cool or 2 for heat.");
+                    }
                     break;
                 case "4":
                     System.out.print("Enter fan speed (low/medium/high): ");
@@ -67,7 +76,7 @@ public class Main {
                     break;
                 case "8":
                     System.out.println("Exiting program...");
-                    System.exit(0);  // Exit the program
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid choice. Please choose again.");
