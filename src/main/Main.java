@@ -11,24 +11,67 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AirConditionerFacade facade = new AirConditionerFacade();
 
-        // Hỏi người dùng có muốn bật điều hòa không
+        // Start by asking if the user wants to turn on the air conditioner
         System.out.print("Do you want to turn on the air conditioner? (ON/OFF): ");
         String input = scanner.nextLine().trim();
 
-        // Kiểm tra đầu vào, bật điều hòa nếu người dùng nhập "ON"
         if (input.equalsIgnoreCase("ON")) {
             facade.turnOn();
-            // Tiếp tục chương trình nếu điều hòa đã bật
-            facade.displayStatus();
         } else {
-            System.out.println("Air conditioner is now OFF");
-            return;  // Nếu không bật, kết thúc chương trình
+            System.out.println("Air conditioner is OFF. Exiting program...");
+            System.exit(0);
         }
 
-        // Thực hiện các hành động khác để ghi log
-        facade.setTemperature(22);
-        facade.setMode("cool");
-        facade.setFanSpeed(FanSpeed.MEDIUM);
-        facade.increaseTimer();
+        // Keep the program running in a loop, waiting for further user commands
+        while (true) {
+            System.out.println("\nEnter a command:");
+            System.out.println("1. Turn OFF the air conditioner");
+            System.out.println("2. Set temperature (e.g., 22)");
+            System.out.println("3. Set mode (e.g., cool, heat)");
+            System.out.println("4. Set fan speed (e.g., low, medium, high)");
+            System.out.println("5. Increase timer (+30 minutes)");
+            System.out.println("6. Decrease timer (-30 minutes)");
+            System.out.println("7. Display status");
+            System.out.println("8. Exit");
+
+            System.out.print("\nChoose an option (1-8): ");
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    facade.turnOff();
+                    break;
+                case "2":
+                    System.out.print("Enter desired temperature: ");
+                    int temperature = Integer.parseInt(scanner.nextLine().trim());
+                    facade.setTemperature(temperature);
+                    break;
+                case "3":
+                    System.out.print("Enter mode (cool/heat): ");
+                    String mode = scanner.nextLine().trim();
+                    facade.setMode(mode);
+                    break;
+                case "4":
+                    System.out.print("Enter fan speed (low/medium/high): ");
+                    String fanSpeed = scanner.nextLine().trim();
+                    facade.setFanSpeed(FanSpeed.valueOf(fanSpeed.toUpperCase()));
+                    break;
+                case "5":
+                    facade.increaseTimer();
+                    break;
+                case "6":
+                    facade.decreaseTimer();
+                    break;
+                case "7":
+                    facade.displayStatus();
+                    break;
+                case "8":
+                    System.out.println("Exiting program...");
+                    System.exit(0);  // Exit the program
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please choose again.");
+            }
+        }
     }
 }
