@@ -28,7 +28,7 @@ public class Main {
             System.out.println("1. Turn OFF the air conditioner");
             System.out.println("2. Set temperature (e.g., 22)");
             System.out.println("3. Set mode (cool/heat)");
-            System.out.println("4. Set fan speed (e.g., low, medium, high)");
+            System.out.println("4. Set fan speed (low, medium, high)");
             System.out.println("5. Increase timer (+30 minutes)");
             System.out.println("6. Decrease timer (-30 minutes)");
             System.out.println("7. Display status");
@@ -61,9 +61,21 @@ public class Main {
                     }
                     break;
                 case "4":
-                    System.out.print("Enter fan speed (low/medium/high): ");
-                    String fanSpeed = scanner.nextLine().trim();
-                    facade.setFanSpeed(FanSpeed.valueOf(fanSpeed.toUpperCase()));
+                    System.out.println("Select fan speed:");
+                    System.out.println("1. Low");
+                    System.out.println("2. Medium");
+                    System.out.println("3. High");
+                    System.out.print("Choose (1, 2, or 3): ");
+                    String fanSpeedChoice = scanner.nextLine().trim();
+                    if (fanSpeedChoice.equals("1")) {
+                        facade.setFanSpeed(FanSpeed.LOW);
+                    } else if (fanSpeedChoice.equals("2")) {
+                        facade.setFanSpeed(FanSpeed.MEDIUM);
+                    } else if (fanSpeedChoice.equals("3")) {
+                        facade.setFanSpeed(FanSpeed.HIGH);
+                    } else {
+                        System.out.println("Invalid fan speed choice. Please select 1 for low, 2 for medium, or 3 for high.");
+                    }
                     break;
                 case "5":
                     facade.increaseTimer();
