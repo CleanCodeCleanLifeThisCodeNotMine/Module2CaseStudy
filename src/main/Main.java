@@ -1,32 +1,24 @@
 package main;
 
 import facade.AirConditionerFacade;
-import model.FanSpeed;
-import model.Mode;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         AirConditionerFacade facade = new AirConditionerFacade();
 
-        // Bật điều hòa
-        facade.turnOn();
+        System.out.print("Do you want to turn on the air conditioner? (ON/OFF): ");
+        String input = scanner.nextLine().trim();
 
-        // Đặt chế độ lạnh
-        facade.setMode("cool");
+        // Kiểm tra đầu vào, bật điều hòa nếu người dùng nhập "ON"
+        if (input.equalsIgnoreCase("ON")) {
+            facade.turnOn();
+            facade.displayStatus();
+        } else {
+            System.out.println("Air conditioner is OFF. Exiting program...");
+            return;
+        }
 
-        // Chỉnh nhiệt độ
-        facade.setTemperature(22);
-
-        // Đặt tốc độ quạt
-        facade.setFanSpeed(FanSpeed.MEDIUM);
-
-        // Tăng giờ hẹn
-        facade.increaseTimer();
-
-        // Hiển thị trạng thái điều hòa
-        facade.displayStatus();
-
-        // Tắt điều hòa
-        facade.turnOff();
     }
 }
