@@ -3,7 +3,7 @@ package util;
 public class ElectricBillCalculator {
 
     private static long startTime;  // To track when the AC is turned on
-    private static final double CONSUMPTION_PER_3_SECONDS = 5.0; // 5 kWh per 10 seconds
+    private static final double CONSUMPTION_PER_10_SECONDS = 5.0; // 5 kWh per 10 seconds
     private static final double PRICE_PER_KWH = 0.5; // $0.5 per kWh
 
     // Start the AC consumption timer
@@ -18,8 +18,8 @@ public class ElectricBillCalculator {
 
 
         double timeInSeconds = timePassed / 1000.0;
-        double numberOf3Seconds = timeInSeconds / 3.0;
-        double totalConsumption = numberOf3Seconds * CONSUMPTION_PER_3_SECONDS;
+        double numberOf10Seconds = timeInSeconds / 10.0;
+        double totalConsumption = numberOf10Seconds * CONSUMPTION_PER_10_SECONDS;
 
         // Calculate
         double totalBill = totalConsumption * PRICE_PER_KWH;
